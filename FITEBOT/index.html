@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fight Bot</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <header>
+      <h1>Fight Bot!</h1>
+    </header>
+
+<!-- Character options and selections-->
+  <div class="characters" id="characters">
+    <div class="character" id="ch1">
+      <input id="nm1" type="text" placeholder="Character Name">
+      <!-- <select class="posit" id="po1">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait1" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status1">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech1">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice1">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar1"></select>
+      <span class="score-board" id="userScore1">NA</span>
+      <span class="score-board" id="hitco1">0</span>
+      <span class="score-board" id="finished1">NA</span>
+      <span class="score-board" id="effects1">None</span>
+    </div>
+    <div class="character" id="ch2">
+      <input id="nm2" type="text" placeholder="Character Name">
+      <!-- <select class="posit" id="po2">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait2" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status2">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech2">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice2">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar2"></select>
+      <span class="score-board" id="userScore2">NA</span>
+      <span class="score-board" id="hitco2">0</span>
+      <span class="score-board" id="finished2">NA</span>
+      <span class="score-board" id="effects2">None</span>
+    </div>
+    <div class="character" id="ch3">
+      <input id="nm3" type="text" placeholder="Character Name">
+      <!-- <select class="posit" id="po3">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait3" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status3">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech3">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice3">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar3"></select>
+      <span class="score-board" id="userScore3">NA</span>
+      <span class="score-board" id="hitco3">0</span>
+      <span class="score-board" id="finished3">NA</span>
+      <span class="score-board" id="effects3">None</span>
+
+    </div>
+    <div class="character" id="ch4">
+      <input id="nm4" type="text" placeholder="Character Name">
+      <!-- <select class="posit" id="po4">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait4" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status4">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech4">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice4">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar4"></select>
+      <span class="score-board" id="userScore4">NA</span>
+      <span class="score-board" id="hitco4">0</span>
+      <span class="score-board" id="finished4">NA</span>
+      <span class="score-board" id="effects4">None</span>
+    </div>
+    <div class="character" id="ch5">
+      <input id="nm5" type="text" placeholder="Character Name">
+      <!-- <select class="posit" id="po5">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait5" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status5">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech5">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice5">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar5"></select>
+      <span class="score-board" id="userScore5">NA</span>
+      <span class="score-board" id="hitco5">0</span>
+      <span class="score-board" id="finished5">NA</span>
+      <span class="score-board" id="effects5">None</span>
+    </div>
+    <div class="character" id="ch6">
+      <input id="nm6" type="text" placeholder="Character Name">
+      <!-- <select class="posit" id="po6">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait6" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status6">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech6">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice6">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar6"></select>
+      <span class="score-board" id="userScore6">NA</span>
+      <span class="score-board" id="hitco6">0</span>
+      <span class="score-board" id="finished6">NA</span>
+      <span class="score-board" id="effects6">None</span>
+    </div>
+    <div class="character" id="ch7">
+      <input id="nm7" type="text" placeholder="Character Name">
+      <!-- <select class="posit" id="po7">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait7" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status7">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech7">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice7">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar7"></select>
+      <span class="score-board" id="userScore7">NA</span>
+      <span class="score-board" id="hitco7">0</span>
+      <span class="score-board" id="finished7">NA</span>
+      <span class="score-board" id="effects7">None</span>
+    </div>
+  </div>
+
+<!--ask janae how to shorten these option codes, because this is a bit rediculous-->
+  <div class="targets" id="targets">
+    <div class="target" id="t1">
+      <input id="nm8" type="text" placeholder="target Name">
+      <!-- <select class="posit" id="po8">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait8" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status8">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech8">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice8">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar8"></select>
+      <span class="score-board" id="userScore8">NA</span>
+      <span class="score-board" id="hitco8">0</span>
+      <span class="score-board" id="finished8">NA</span>
+      <span class="score-board" id="effects8">None</span>
+    </div>
+    <div class="target" id="t2">
+      <input id="nm9" type="text" placeholder="target Name">
+      <!-- <select class="posit" id="po9">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait9" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status9">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech9">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice9">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar9"></select>
+      <span class="score-board" id="userScore9">NA</span>
+      <span class="score-board" id="hitco9">0</span>
+      <span class="score-board" id="finished9">NA</span>
+      <span class="score-board" id="effects9">None</span>
+    </div>
+    <div class="target" id="t3">
+      <input id="nm10" type="text" placeholder="target Name">
+      <!-- <select class="posit" id="po10">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait10" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status10">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech10">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice10">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar10"></select>
+      <span class="score-board" id="userScore10">NA</span>
+      <span class="score-board" id="hitco10">0</span>
+      <span class="score-board" id="finished10">NA</span>
+      <span class="score-board" id="effects10">None</span>
+    </div>
+    <div class="target" id="t4">
+      <input id="nm11" type="text" placeholder="target Name">
+      <!-- <select class="posit" id="po11">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait11" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status11">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech11">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice11">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar11"></select>
+      <span class="score-board" id="userScore11">NA</span>
+      <span class="score-board" id="hitco11">0</span>
+      <span class="score-board" id="finished11">NA</span>
+      <span class="score-board" id="effects11">None</span>
+    </div>
+    <div class="target" id="t5">
+      <input id="nm12" type="text" placeholder="target Name">
+      <!-- <select class="posit" id="po12">
+        <option value="far">Far</option>
+        <option value="med">Med</option>
+        <option value="close">close</option>
+      </select> -->
+      <input class="traits" id="trait12" type="number" min="0" max="10" placeholder="Trait">
+      <select id="status12">
+        <option value="0">No Status</option>
+        <option value="1">Defending</option>
+        <option value="2">Agression</option>
+        <option value="3">Disable: Wands</option>
+        <option value="4">Disable: Pentacles</option>
+        <option value="5">Disable: Cups</option>
+        <option value="6">Hiding</option>
+        <option value="7">Feint</option>
+        <option value="8">Permit</option>
+        <option value="9">Piercing</option>
+        <option value="10">Plated</option>
+        <option value="11">Winded</option>
+      </select>
+      <select id="tech12">
+        <option value="None, 0, 0, 0, NA">No Relevent Technique</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">boxing: duck and weave</option>
+        <option value="No Effect, 10, 0, 0, NA">boxing: jab</option>
+        <option value="No Effect, 0, 0, 0, NA">boxing: counterpunch</option>
+        <option value="No Effect, 1, 0, 0, NA">boxing: hook</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">boxing: bolo punch</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: esquiva</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">capoeira: armada</option>
+        <option value="No Effect, 0, 0, 0, NA">capoeira: meia lua de compasso</option>
+        <option value="Piercing, 7, 0, 1, NA">capoeira: escorpiao </option>
+        <option value="Permit/Knockdown, 4, 88, 0, Finisher">capoeira: tesoura</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">muay thai: sok ngat</option>
+        <option value="Winded, 0, 0, 0, NA">muay thai: te tat</option>
+        <option value="Pinned, 0, 0, 0, NA">muay thai: chap ko</option>
+        <option value="Permit, 0, 77, 0, NA">muay thai: khao thon</option>
+        <option value="No Effect, 5, 0, 0, Finisher">muay thai: kradot te</option>
+        <option value="Permit, 0, 88, 0, NA">street fight: hidden shiv</option>
+        <option value="Pinned or Winded, 0, 0, 0, NA">street fight: sucker punch</option> <!--Pinned or Winded-->
+        <option value="No Effect, 1, 0, 0, NA">street fight: bite</option> <!--not sure what you wanted for Bite, since it's a problem child-->
+        <option value="Knockdown, 0, 0, 0, NA">street fight: knee smash</option>
+        <option value="No Effect, 0, 0, 0, Finisher">street fight: curb stomp</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: yeop chagi</option> <!-- Trumps regardless of suit if opponent used Charge-->
+        <option value="No Effect, 0, 0, 0, NA">taekwando: kawi chagi</option>
+        <option value="No Effect, 1, 0, 0, NA">taekwando: bandai chagi</option>
+        <option value="No Effect, 0, 0, 0, NA">taekwando: twi-myo chagi</option>
+        <option value="Winded, 3, 0, 0, Finisher">taekwando: dwi huryeo chagi</option>
+        <option value="No Effect, 3, 0, 0, NA">tiger kung fu: tiger claw</option>
+        <option value="Pinned, 0, 0, 0, NA">tiger kung fu: tiger tail kick</option>
+        <option value="Knockdown, 0, 0, 0, NA">tiger kung fu: tiger front sweep</option>
+        <option value="Permit, 0, 66, 0, NA">tiger kung fu: ground fighting</option>
+        <option value="Disarmed, 4, 0, 0, Finisher">tiger kung fu: joint attack</option>
+        <option value="Pinned/Disable (Cups), 0, 0, 0, NA">wrestling: grapple</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">wrestling: joint lock</option>
+        <option value="Permit, 1, 77, 0, NA">wrestling: reversal</option> <!--Conditional feint: If user suffering Knockdown-->
+        <option value="Knockdown, 0, 0, 0, NA">wrestling: takedown</option>
+        <option value="Pinned, 5, 0, 0, Finisher">wrestling: incapacitate</option>
+        <option value="No Effect, 1, 0, 0, NA">andalusian legacy: angles of attack</option>
+        <option value="Disarmed, 0, 0, 0, NA">andalusian legacy: cloak and dagger</option>
+        <option value="Piercing, 0, 0, 1, NA">andalusian legacy: reverse grip</option>
+        <option value="Permit, 0, 88, 0, NA">andalusian legacy: gentlemans gambit</option> <!-- If first round: Apply Internal Bleeding. Also: The code hates the apostrophe in this name-->
+        <option value="Disarmed, 4, 0, 0, Finisher">andalusian legacy: estocada</option>
+        <option value="No Effect, 1, 0, 0, NA">fencing: feint</option>
+        <option value="No Effect, 0, 0, 0, NA">fencing: lunge</option>
+        <option value="Pinned/Disabled (Pentacles), 0, 0, 0, NA">fencing: prise de far</option>
+        <option value="No Effect, 3, 0, 0, NA">fencing: riposte</option>
+        <option value="No Effect, 5, 0, 0, Finisher">fencing: counter ripsote</option>
+        <option value="No Effect, 3, 0, 0, NA">heavy metal: heavy blow</option>
+        <option value="Piercing, 11, 0, 1, NA">heavy metal: brutal chop</option>
+        <option value="Knockdown, 0, 0, 0, NA">heavy metal: rend and cleave</option>
+        <option value="Disabled (Pentacles), 0, 0, 0, NA">heavy metal: grave mistake</option>
+        <option value="No Effect, 3, 0, 0, Finisher">heavy metal: murder blow</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: shadow strike</option>
+        <option value="Knockdown, 0, 0, 0, NA">hood shadow: gargoyle drop</option> <!-- Only if hidden-->
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: controlled escape</option>
+        <option value="No Effect, 0, 0, 0, NA">hood shadow: eye of the storm</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">hood shadow: night incarnate</option>
+        <option value="No Effect, 1, 0, 0, NA">kenjutsu: iajutsu</option>
+        <option value="Pinned/Disabled (Wands), 0, 0, 0, NA">kenjutsu: kaeshi waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: nidan waza</option>
+        <option value="No Effect, 0, 0, 0, NA">kenjutsu: hikibana</option>
+        <option value="Disabled (Pentacles), 4, 0, 0, Finisher">kenjutsu: kiritsuke</option>
+        <option value="Permit/Piercing, 0, 77, 1, NA">staff spear: joint target</option> <!-- Only does piercing if foe is suffering Knockdown-->
+        <option value="Winded, 0, 0, 0, NA">staff spear: ring the bell</option>
+        <option value="Knockdown, 0, 0, 0, NA">staff spear: sweep the leg</option>
+        <option value="No Effect, 0, 0, 0, NA">staff spear: thrusting strike</option>
+        <option value="No Effect, 4, 0, 0, Finisher">staff spear: heartpiercer</option>
+        <option value="Piercing, 0, 0, 1, NA">archery: aim and expand</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: running snapshot</option>
+        <option value="Disarmed/Pinned, 0, 0, 0, NA">archery: trick shot</option>
+        <option value="No Effect, 0, 0, 0, NA">archery: arc shot</option>
+        <option value="No Effect, 5, 0, 0, Finisher">archery: arrow splitter</option>
+        <option value="Pinned/Knockdown, 0, 0, 0, NA">auto arsenal: keep em pinned</option> <!-- Knockdown if opponent had Charge-->
+        <option value="Permit, 0, 77, 0, NA">auto arsenal: trigger discipline</option>
+        <option value="Winded, 0, 0, 0, NA">auto arsenal: suppressive fire</option>
+        <option value="Knockdown, 0, 0, 0, NA">auto arsenal: hit the deck</option> <!-- Can apply knockdown or 3 hits....-->
+        <option value="No Effect, 3, 0, 0, Finisher">auto arsenal: reap the whirlwind</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: kentucky windage</option>
+        <option value="No Effect, 0, 0, 0, NA">desig marksman: between heartbeats</option>
+        <option value="No Effect, 4, 0, 0, NA">desig marksman: reposition</option>
+        <option value="No Effect, 1, 0, 0, NA">desig marksman: count to three</option>
+        <option value="No Effect, 4, 0, 0, Finisher">desig marksman: one shot one kill</option>
+        <option value="Disarmed/Permit, 0, 99, 0, NA">modern technique: close qtrs combat</option> <!-- If in close range-->
+        <option value="Disabled (Wands)/Pinned, 0, 0, 0, NA">modern technique: double tap</option> <!-- User can apply either/or-->
+        <option value="Winded, 0, 0, 0, NA">modern technique: flash sight picture</option> <!-- If opponent Charged-->
+        <option value="No Effect, 11, 0, 0, NA">modern technique: quickdraw</option>
+        <option value="Disabled (Pentacles), 5, 0, 0, Finisher">modern technique: mozambique drill</option>
+        <option value="Pinned, 0, 0, 0, NA">hunter howl: hamstring</option>
+        <option value="Winded, 0, 0, 0, NA">hunter howl: relentless</option>
+        <option value="Disabled (Wands), 0, 0, 0, NA">hunter howl: roar</option>
+        <option value="Permit, 0, 88, 0, NA">hunter howl: savage pursuit</option>
+        <option value="No Effect, 5, 0, 0, Finisher">hunter howl: create opening</option>
+        <option value="Piercing, 1, 0, 1, NA">mark beast: gore</option>
+        <option value="No Effect, 3, 0, 0, NA">mark beast: maim</option>
+        <option value="Knockdown, 0, 0, 0, NA">mark beast: bounding tackle</option>
+        <option value="No Effect, 0, 0, 0, NA">mark beast: painful meal</option>
+        <option value="No Effect, 3, 0, 0, Finisher">mark beast: spinebreaker</option>
+        <option value="No Effect, 0, 0, 0, NA">pack attack: sideswipe</option>
+        <option value="Knockdown/Pinned, 0, 0, 0, NA">pack attack: bait and switch</option> <!-- either/or, chosen by user-->
+        <option value="Disabled (Pentacles), 1, 0, 0, NA">pack attack: coordinated claw</option> <!-- Disables pentacles only if no other packmates threw Cups-->
+        <option value="No Effect, 0, 0, 0, NA">pack attack: opportunistic lunge</option>
+        <option value="Knockdown, 4, 0, 0, Finisher">pack attack: throat bite</option>
+        <option value="No Effect, 1, 0, 0, NA">breath gods: deep breath</option>
+        <option value="No Effect, 10, 0, 0, NA">breath gods: cloak of fury</option>
+        <option value="No Effect, 3, 0, 0, NA">breath gods: rolling blast</option>
+        <option value="No Effect, 0, 0, 0, NA">breath gods: forge and bellows</option>
+        <option value="No Effect, 1, 0, 0, Finisher">breath gods: wall of destruction</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: grass cutter</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: blowback</option>
+        <option value="Knockdown, 0, 0, 0, NA">typhoon blade: thunderclap blow</option>
+        <option value="No Effect, 0, 0, 0, NA">typhoon blade: heavenly wing</option>
+        <option value="No Effect, 3, 0, 0, Finisher">typhoon blade: serpent slaying</option>
+      </select>
+      <select id="choice12">
+        <option value="n">No Suit</option>
+        <option value="s">swords</option>
+        <option value="w">wands</option>
+        <option value="c">cups</option>
+        <option value="p">pentacles</option>
+      </select>
+      <select id="tar12"></select>
+      <span class="score-board" id="userScore12">NA</span>
+      <span class="score-board" id="hitco12">0</span>
+      <span class="score-board" id="finished12">NA</span>
+      <span class="score-board" id="effects12">None</span>
+    </div>
+
+    <div class="update-tech" id="down_button">
+      <img src="Images/LockTechniques.jpg"
+            width="105"
+            height="35">
+    </div>
+
+    <div class="up-nm" id="up-button">
+      <img src="Images/SetNames.jpg"
+            width="65"
+            height="35">
+    </div>
+    <div class="Round" id="The_Button">
+      <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54631094_VfcBmQ73F8IfuDg.png"
+            width="65"
+            height="65">
+    </div>
+  </div>
+
+<!–– Score board and associated labels ––>
+  <!-- <div class="score-board">
+      <div id="user-label" class="badge">user</div>
+      <div id="comp-label" class="badge">comp</div>
+      <span id="user-score">0</span>:<span id="comp-score">0</span>
+    </div> -->
+
+    <!-- <div class="result">
+      <p>Swords slices cups. You Trump!</p>
+    </div>-->
+
+<!–– Images and choice IDs ->
+    <!-- <div class="choices">
+        <div class="choice" id="c">
+          <img src="Images/Cups.png"
+                width="65"
+                height="65">
+              </div>
+        <div class="choice" id="s">
+          <img src="Images/swords.png"
+                width="65"
+                height="65">
+        </div>
+        <div class="choice" id="w">
+          <img src="Images/Wands.png"
+                width="65"
+                height="65">
+        </div>
+        <div class="choice" id="p">
+          <img src="Images/pentacles.png"
+                width="65"
+                height="65">
+        </div>
+    </div> -->
+
+
+  <p id="action-message"> Choose your suit. </p>
+  <script src="app.js" charset="utf-8"></script>
+
+
+    <!-- <div class="choice-content" id="s">
+        <img src="Images/Swords.png"
+          width="25"
+          height="25">
+    </div> -->
+  </body>
+</html>
